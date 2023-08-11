@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        async function cargar(){
+            try{
+                let res = await axios("https://pokeapi.co/api/v2/pokemon/15")
+                let objeto = await res.data
+
+                console.log(objeto)
+                document.querySelector("#imagen").src = objeto.sprites.front_default
+            }
+            catch(error){
+                alert(error)
+            }
+        }
+
+        async function guardar(){
+            try{
+                let objeto = {
+                    nombre: "Denny",
+                    apellido: "Herrera",
+                    paisOrigen: "El Salvador"
+                }
+
+                let res = await axios.post("https://denny2023.azurewebsites.net/api/autores", objeto)
+
+                let o = await res.data
+                console.log(res)
+                console.log(res.data)
+
+                alert(o.message)
+                console.log(o)
+            }
+            catch(error){
+                alert(error)
+            }
+        }
+
+        async function editar(){
+            try{
+                let objeto = {
+                    autorId: 101,
+                    nombre: "Denny Alexis",
+                    apellido: "Herrera Marin",
+                    paisOrigen: "El Salvador"
+                }
+
+                let res = await axios.put("https://denny2023.azurewebsites.net/api/autores", objeto)
+
+                let o = await res.data
+
+                alert(o.message)
+                console.log(o)
+            }
+            catch(error){
+                alert(error)
+            }
+        }
+
+        async function eliminar(){
+            try{
+
+                let res = await axios.delete("https://denny2023.azurewebsites.net/api/autores?id=101")
+
+                let o = await res.data
+
+                alert(o.message)
+                console.log(o)
+            }
+            catch(error){
+                alert(error)
+            }
+        }
+
+        /*
+        async function guardar(){
+            try{
+                let objeto = {
+                    nombre: "Denny",
+                    apellido: "Herrera",
+                    paisOrigen: "El Salvador"
+                }
+
+                let res = await axios({
+                    method: "POST",
+                    url: "https://denny2023.azurewebsites.net/api/autores",
+                    data: objeto
+                })
+
+                let o = res.data
+
+                alert(o.message)
+            }
+            catch(error){
+                alert(error)
+            }
+        }
+        */
+    </script>
+</head>
+<body>
+    <img id="imagen" />
+    <button onclick="cargar()">Cargar Imagen</button>
+    <button onclick="guardar()">Guardar</button>
+    <button onclick="editar()">Editar</button>
+    <button onclick="eliminar()">Eliminar</button>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function guardar(){
+            try{
+                let objeto ={
+                    nombre: "Denny",
+                    apellido: "Herrera",
+                    paisOrigen: "El Salvador"
+                }
+
+                console.log(objeto)
+                console.log(JSON.stringify(objeto))
+
+                let res = await fetch("https://denny2023.azurewebsites.net/api/autores",
+                    {
+                        method: "POST",
+                        headers: {"content-type": "application/json"},
+                        body: JSON.stringify(objeto)
+                    })
+
+                let o = await res.json()
+
+                console.log(o)
+            }
+            catch(error){
+                alert(error)
+            }
+        }
+
+        async function editar(){
+            try{
+                let objeto ={
+                    autorId: 2,
+                    nombre: "Denny",
+                    apellido: "Herrera",
+                    paisOrigen: "El Salvador"
+                }
+
+                let res = await fetch("https://denny2023.azurewebsites.net/api/autores",
+                    {
+                        method: "PUT",
+                        headers: {"content-type": "application/json"},
+                        body: JSON.stringify(objeto)
+                    })
+                console.log(res)
+                let o = await res.json()
+
+                console.log(o)
+                alert(o.message)
+            }
+            catch(error){
+                console.log(error)
+                alert(error)
+            }
+        }
+
+        async function eliminar(){
+            try{
+                let res = await fetch("https://denny2023.azurewebsites.net/api/autores?id=100",
+                    {
+                        method: "DELETE",
+                        headers: {"content-type": "application/json"},
+                    })
+
+                let o = await res.json()
+
+                alert(o.message)
+                console.log(o)
+            }
+            catch(error){
+                alert(error)
+                console.log(error)
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="guardar()">Guardar</button>
+    <button onclick="editar()">Editar</button>
+    <button onclick="eliminar()">Eliminar</button>
+</body>
+</html>

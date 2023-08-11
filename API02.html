@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        async function cargarPokemon(){            
+            try{
+                
+                let res = await fetch("https://pokeapi.co/api/v2/pokemon/15")
+                //console.log(res)
+                let objeto = await res.json()
+                console.log(objeto)
+
+                document.querySelector("#imagen").src = objeto.sprites.back_default
+            }
+            catch(error){
+                alert(error)
+                console.log(error)
+            }
+            finally{
+                console.log("Siempre se ejecuta")
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="cargarPokemon()">Cargar</button>
+    <img id="imagen" />
+</body>
+</html>
