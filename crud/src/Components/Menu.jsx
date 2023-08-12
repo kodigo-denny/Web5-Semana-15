@@ -19,6 +19,9 @@ function Menu(){
                             <li className="nav-item">
                                 <Link to={'/about'} className="nav-link active">Acerca de</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link to={'/autores'} className="nav-link active">Autores</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
