@@ -1,21 +1,22 @@
-import React, {useState, useEffect} from "react";
+import react, {useEffect, useState} from "react";
 import Tabla from "./Tabla";
 import axios from "axios";
 
-function AutoresCRUD(){
 
-    const[autores, setAutores] = useState()
+function LibrosCRUD(){
 
-    useEffect(() =>{
-        cargarAutores()
+    const[libros, setLibros] = useState()
+
+    useEffect(() => {
+        cargarLibros()
     }, [])
 
-    async function cargarAutores(){
+    async function cargarLibros(){
         try{
-            let res = await axios("https://denny2023.azurewebsites.net/api/autores")
+            let res = await axios("https://denny2023.azurewebsites.net/api/libros")
             let data = await res.data
 
-            setAutores(data)
+            setLibros(data)
         }
         catch(error){
             alert(error)
@@ -25,17 +26,18 @@ function AutoresCRUD(){
 
     return(
         <div>
-            {autores === undefined ?
+            {libros=== undefined ?
                 <div><h2>Cargando</h2>
                     <div className="spinner-border" role="status">
                         <span className="visible-hidden">Loading...</span>
                     </div>
                 </div>                
             :
-                <Tabla controlador={'autores'} lista={autores} cols={["ID", "Nombre", "Apellido", "Pais de Origen"]} />
+                <Tabla controlador={"libros"} lista={libros} cols={["ID", "Titulo", "Descripción", "Ediccion", "ISBN", "Autor ID", "Nombre", "Apellido"]} />
             }
         </div>
     )
 }
 
-export default AutoresCRUD
+
+export default LibrosCRUD

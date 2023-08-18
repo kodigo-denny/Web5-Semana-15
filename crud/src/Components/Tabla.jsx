@@ -34,7 +34,7 @@ function Tabla({lista, cols, controlador}){
                             return <tr key={index}>
                                 <td>
                                     <Link to={`/${controlador}/edit/${Object.values(value)[0]}`} className="btn btn-primary">Editar</Link>
-                                    <button className="btn btn-danger">Eliminar</button>
+                                    <Link to={`/${controlador}/delete/${Object.values(value)[0]}`} className="btn btn-danger">Eliminar</Link>
                                 </td>
                                 {
                                     Object.values(value).map((value2, index2)=>{

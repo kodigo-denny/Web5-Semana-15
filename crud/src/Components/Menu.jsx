@@ -22,6 +22,9 @@ function Menu(){
                             <li className="nav-item">
                                 <Link to={'/autores'} className="nav-link active">Autores</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link to={"/libros"} className="nav-link active">Libros</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
